@@ -1,0 +1,122 @@
+﻿@model CongViecGiaDinh.Models.BangTin
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+          content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Nice lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Nice admin lite design, Nice admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+          content="Nice Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="canonical" href="https://www.wrappixel.com/templates/niceadmin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/images/favicon.png">
+    <!-- Custom CSS -->
+    <link href="~/Content/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Content/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body row">
+                        <h3>Are you sure you want to delete this?</h3>
+                        <div>
+                            <h4>BangTin</h4>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TieuDe)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TieuDe)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.NoiDung)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.NoiDung)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.IDNguoiDang)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.IDNguoiDang)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.ThoiGianTao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.ThoiGianTao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.NguoiTao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.NguoiTao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.ThoiGianSua)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.ThoiGianSua)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.NguoiSua)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.NguoiSua)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.IsDelete)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.IsDelete)
+                                </dd>
+
+                            </dl>
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                                    @Html.ActionLink("Back to List", "Index")
+                                </div>
+                            }
+                        </div>

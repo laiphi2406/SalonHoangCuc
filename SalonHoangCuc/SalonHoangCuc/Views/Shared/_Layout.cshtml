@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gia đình việt</title>
+    <link rel="icon" href="~/Content/images/home-icon.png" type="image/icon type">
+</head>
+<body>
+
+    <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full"
+         data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin6">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-header" data-logobg="skin5">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
+                        <i class="ti-menu ti-close"></i>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <div class="navbar-brand">
+                        <a href="@Url.Action("Index","Home")" class="logo">
+                            <!-- Logo icon -->
+                            <b class="logo-icon">
+                                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                                <!-- Dark Logo icon -->
+                                <img src="~/Content/images/home-white.png" alt="homepage" class="dark-logo" />
+                                <!-- Light Logo icon -->
+                                <img src="~/Content/images/home-white.png" alt="homepage" class="light-logo" />
+                            </b>
+                            <!--End Logo icon -->
+                            <!-- Logo text -->
+                            <span class="logo-text">
+                                <!-- dark Logo text -->
+                                <img src="~/Content/images/Ten_Trang.png" alt="homepage" class="dark-logo" />
+                                <!-- Light Logo text -->
+                                <img src="~/Content/images/Ten_Trang.png" class="light-logo" alt="homepage" />
+                            </span>
+                        </a>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-start me-auto">
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item search-box">
+                            <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-magnify font-20 me-1"></i>
+                                    <div class="ms-1 d-none d-sm-block">
+                                        <span>Search</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <form class="app-search position-absolute">
+                                <input type="text" class="form-control" placeholder="Search &amp; enter">
+                                <a class="srh-btn">
+                                    <i class="ti-close"></i>
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-end">
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="~/Content/images/users/1.jpg" alt="user" class="rounded-circle" width="31">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("ChiTietGiaDinh","HoGiaDinhs")">
+                                    <i class="mdi mdi-home"></i>
+                                    Gia đình tôi
+                                </a>
+                                <a href="@Url.Action("Index","Login")" class="dropdown-item">
+                                    <i class="mdi mdi-logout"></i>
+                                    Đăng xuất
+                                </a>
+                            </ul>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        @if (ViewBag.role == 1)
+                        {
+                            @*<li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","BangTinsTest")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-av-timer"></i>
+                                    <span class="hide-menu">Bảng tin</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","TroChuyens")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-account-network"></i>
+                                    <span class="hide-menu">Trò chuyện</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","TieuChis")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-bookmark-check"></i>
+                                    <span class="hide-menu">Tiêu chí</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","HoGiaDinhs")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-account-switch"></i>
+                                    <span class="hide-menu">Hộ gia đình</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","CongViecThuongXuyens")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-certificate"></i>
+                                    <span class="hide-menu">CV thường xuyên</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","CongViecKhongThuongXuyens")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-book-minus"></i>
+                                    <span class="hide-menu">CV không thường xuyên</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","ViecLams")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-security-home"></i>
+                                    <span class="hide-menu">Công việc gia đình</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("PheDuyetThanhVien","HoGiaDinhs")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-account-check"></i>
+                                    <span class="hide-menu">Phê duyệt thành viên</span>
+                                </a>
+                            </li>*@
+
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Hoadons")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-account-check"></i>
+                                    <span class="hide-menu">Hóa Đơn</span>
+                                </a>
+                            </li>
+
+
+                        }
+
+                        else
+                        {
+                            @*<li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","BangTinsTest")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-av-timer"></i>
+                                    <span class="hide-menu">Bảng tin</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","TroChuyens")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-account-network"></i>
+                                    <span class="hide-menu">Trò chuyện</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","CongViecKhongThuongXuyens")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-book-minus"></i>
+                                    <span class="hide-menu">CV không thường xuyên</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","ViecLams")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-security-home"></i>
+                                    <span class="hide-menu">Công việc gia đình</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("PheDuyetThanhVien","HoGiaDinhs")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-account-check"></i>
+                                    <span class="hide-menu">Phê duyệt thành viên</span>
+                                </a>
+                            </li>*@
+                        }
+
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+
+        <div class="body-content">
+            @RenderBody()
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

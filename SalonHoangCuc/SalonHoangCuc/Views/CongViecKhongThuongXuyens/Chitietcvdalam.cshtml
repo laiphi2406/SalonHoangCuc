@@ -1,0 +1,118 @@
+﻿@model CongViecGiaDinh.Models.CongViecKhongThuongXuyen
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .ul.pagination {
+        padding: 0;
+        margin: 0;
+    }
+
+    ul.pagination li {
+        display: inline;
+    }
+
+        ul.pagination li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+            ul.pagination li a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            ul.pagination li a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+          content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Nice lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Nice admin lite design, Nice admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+          content="Nice Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="canonical" href="https://www.wrappixel.com/templates/niceadmin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/images/favicon.png">
+    <!-- Custom CSS -->
+    <link href="~/Content/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Content/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body row">
+                        <div class="row col-lg-12">
+                            <div class="col-lg-6"><h2>Lịch Sử Làm Việc</h2></div>
+                            <hr />
+                        </div>
+                        <div class="row col-lg-12">
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TenCongViec)
+                                </dt>
+
+                                <dd style="margin-top:20px">
+                                    @Html.DisplayFor(model => model.TenCongViec)
+                                </dd>
+                                <hr />
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </dt>
+                                <dd style="margin-top:20px">
+                                    @Html.DisplayFor(model => model.Description)
+                                </dd>
+                                <hr />
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.UrlImage)
+                                </dt>
+                                <dd style="margin-top:20px">
+                                    <img src="/Content/@Html.DisplayFor(model => model.UrlImage)" style="height:400px;width:400px;" />
+                                </dd>
+                            </dl>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Content/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Content/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Content/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Content/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Content/js/custom.min.js"></script>
+    <script src="~/Scripts/BangTin.js"></script>
+</body>
+</html>
+

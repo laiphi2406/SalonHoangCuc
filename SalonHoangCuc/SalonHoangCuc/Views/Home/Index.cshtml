@@ -1,0 +1,337 @@
+﻿@model CongViecGiaDinh.Models.DataDashboard
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+          content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Nice lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Nice admin lite design, Nice admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+          content="Nice Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="canonical" href="https://www.wrappixel.com/templates/niceadmin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/images/favicon.png">
+    <!-- Custom CSS -->
+    <link href="~/Content/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Content/css/style.min.css" rel="stylesheet">
+    <style type="text/css">
+        .my-custom-scrollbar {
+            position: relative;
+            height: 210px;
+            overflow: auto;
+        }
+
+        .table-wrapper-scroll-y {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        .ellipsis {
+            position: relative;
+        }
+
+            .ellipsis:before {
+                content: '&nbsp;';
+                visibility: hidden;
+            }
+
+            .ellipsis span {
+                position: absolute;
+                left: 0;
+                right: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-5 align-self-center">
+                    <h4 class="page-title">Trang chủ</h4>
+                </div>
+                <div class="col-7 align-self-center">
+                    <div class="d-flex align-items-center justify-content-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Trang chủ</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            @*Hiển thị danh sách công việc*@
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body row">
+                            <div class="col-lg-12">
+                                <div class="col-lg-6"><h4 style="margin-bottom:15px">Danh sách hóa đơn trong ngày</h4></div>
+                                @*<div class="col-lg-6 d-flex justify-content-end">
+                            <button class="btn  btn-outline-primary mb-2" onclick="location.href='@Url.Action("Create", "CongViecThuongXuyens")';return false;"> <i class="me-2 mdi mdi-plus"></i>Tạo mới</button>
+                        </div>*@
+                            </div>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                <table class="table table-bordered table-striped mb-0">
+                                    <tr>
+                                        <th class="text-center" style="width: 400px; max-width: 400px ">
+                                            Tên Công Việc
+                                        </th>
+                                        <th class="text-center">
+                                            Tên Tiêu chí
+                                        </th>
+                                        <th class="text-center">
+                                            Điểm
+                                        </th>
+                                        <th class="text-center" style="width: 150px; max-width: 150px">
+                                            Trạng thái
+                                        </th>
+                                    </tr>
+                                    @foreach (var item in Model.ViecLams)
+                                    {
+                                <tr>
+                                    <td class="ellipsis">
+                                        <span>&nbsp @Html.DisplayFor(modelItem => item.TenCongViecThuongXuyen) &nbsp</span>
+                                    </td>
+                                    <td class="ellipsis">
+                                        <span>&nbsp @Html.DisplayFor(modelItem => item.TenTieuChi) &nbsp</span>
+                                    </td>
+                                    <td>
+                                        <span>&nbsp @Html.DisplayFor(modelItem => item.Diem) &nbsp</span>
+                                    </td>
+                                    <td>
+                                        @if (item.TrangThai == true)
+                                        {
+                                            <span class="label label-success label-rounded">Đã Hoàn Thành</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="label label-danger label-rounded">Chưa Hoàn Thành</span>
+                                        }
+                                    </td>
+                                </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="row">
+                    @*Biều đồ đường*@
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body row">
+                                <div class="col-lg-6"><h4 class="card-title">Số hóa đơn</h4></div>
+                                <div class="col-lg-6 d-flex justify-content-end">
+                                    <button class="btn btn-outline-primary btn-sm" style="margin-right:10px" onclick="showThangDiem()">Tháng</button>
+                                    <button class="btn btn-outline-primary btn-sm" type="submit" onclick="showNamDiem()">Năm</button>
+                                </div>
+
+                                <div class="sales ct-charts mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body row">
+                                <div class="col-lg-6"><h4 class="card-title">Số tiền</h4></div>
+                                <div class="col-lg-6 d-flex justify-content-end">
+                                    <button class="btn btn-outline-primary btn-sm" style="margin-right:10px" onclick="showThangCongViec()">Tháng</button>
+                                    <button class="btn btn-outline-primary btn-sm" type="submit" onclick="showNamCongViec()">Năm</button>
+                                </div>
+                                <div class="sales2 ct-charts mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @*Top 5*@
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body row">
+                                <div class="col-lg-6"><h4 class="card-title">Top 5 dịch vụ sử dụng nhiều nhất</h4></div>
+                                @*<div class="col-lg-6"><h4 class="card-title" style="text-align:right">Vị trí hiện tại của bạn : <span class="text-danger">@Model.ViTriCuaBan</span></h4></div>*@
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">Hộ gia đình</th>
+                                            <th class="border-top-0 text-center">Số điểm hiện tại</th>
+                                            <th class="border-top-0 text-center">Số thành viên</th>
+                                            <th class="border-top-0 text-center ">Vị trí gia đình</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var d in Model.DanhSachTop5s)
+                                        {
+                                            <tr>
+                                                <td class="txt-oflo">@d.TenHoGiaDinh</td>
+                                                <td class="txt-oflo font-medium text-center">@d.SoDiemHienTai</td>
+                                                <td class="txt-oflo font-medium text-center">@d.SoThanhVien</td>
+                                                <td class="txt-oflo font-medium text-center text-warning">@d.ViTri</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @*Biểu đồ công việc hoàn thành chưa hoàn thành*@
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Loại thanh toán</h4>
+                                <div class="sales3 ct-charts mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @*<footer class="footer text-center">
+                All Rights Reserved by Nice admin. Designed and Developed by
+                <a href="https://www.wrappixel.com">WrapPixel</a>.
+            </footer>*@
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Content/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Content/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Content/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Content/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Content/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="~/Content/libs/chartist/dist/chartist.min.js"></script>
+    <script src="~/Content/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/pages/dashboards/dashboard1.js"></script>
+    <script>
+        var chart = new Chartist.Line('.sales', {
+            labels: @Html.Raw(Json.Encode(Model.BieuDoDiem.TieuDe)),
+            series: [
+                @Html.Raw(Json.Encode(Model.BieuDoDiem.DiemSo))
+            ]
+        }, {
+            low: 0,
+            high:200,
+            showArea: true,
+            fullWidth: true,
+            plugins: [
+                Chartist.plugins.tooltip()
+            ],
+            axisY: {
+                onlyInteger: true,
+                scaleMinSpace: 40,
+                offset: 20,
+                labelInterpolationFnc: function (value) {
+                    return (value);
+                }
+            },
+
+        });
+
+
+        var chart2 =  new Chartist.Line('.sales2', {
+            labels: @Html.Raw(Json.Encode(Model.BieuDoCongViec.TieuDe)),
+            series: [
+               @Html.Raw(Json.Encode(Model.BieuDoCongViec.CongViec))
+            ]
+        }, {
+            low: 0,
+            high: 50,
+            showArea: true,
+            fullWidth: true,
+            plugins: [
+                Chartist.plugins.tooltip()
+            ],
+            axisY: {
+                onlyInteger: true,
+                scaleMinSpace: 40,
+                offset: 20,
+                labelInterpolationFnc: function (value) {
+                    return (value );
+                }
+            },
+
+        });
+
+        var data = {
+            labels: @Html.Raw(Json.Encode(Model.BieuDoTron.TieuDe)),
+            series: @Html.Raw(Json.Encode(Model.BieuDoTron.CongViec))
+        };
+
+        var options = {
+            labelInterpolationFnc: function (value) {
+                return value
+            }
+        };
+
+        var responsiveOptions = [
+            ['screen and (min-width: 640px)', {
+                chartPadding: 20,
+                labelOffset: 100,
+                labelDirection: 'explode',
+                labelInterpolationFnc: function (value, griall) {
+                    var percentage = ((data.series[griall] / data.series.reduce((a, b) => a + b, 0)) * 100).toFixed(1) + '%';
+                    return value + '\n' + percentage;
+                }
+            }],
+            ['screen and (min-width: 1024px)', {
+                labelOffset: 80,
+                chartPadding: 30
+            }]
+        ];
+
+        var chart3 = new Chartist.Pie('.sales3', data, options, responsiveOptions);
+
+        setTimeout(function () {
+            chart.update();
+        chart2.update();
+        chart3.update();
+        }, 2000);
+
+    //Variable you want to access
+        @*var role = '@Session["role"]';
+        var idHoGiaDinh = '@Session["idHoGiaDinh"]';
+        var idUser = '@Session["idUser"]';*@
+    </script>
+
+</body>
+
+</html>
