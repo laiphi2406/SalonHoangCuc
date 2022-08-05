@@ -838,6 +838,7 @@
     <Content Include="Views\ViecLams\UploadImage.cshtml" />
     <Content Include="Views\KhachHang\index.cshtml" />
     <Content Include="Views\HoaDons\index.cshtml" />
+    <Content Include="Views\HoaDons\Create.cshtml" />
     <None Include="Views\Page\error-404.cshtml" />
     <None Include="Views\Page\form-basic.cshtml" />
     <None Include="Views\Page\icon-material.cshtml" />
